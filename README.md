@@ -43,7 +43,7 @@ include_once '/path/to/jwp-dh.php';
 В классе необходимо реализовать два метода: `public function process( $request, $response )` и `public function total( $request )`
 
 ## Примеры использования
-###Создание пользовательского обработчика###
+### Создание пользовательского обработчика
 ```php
 class JWP_DH_Example_Process_Posts extends JWP\DH\Handler {
 	
@@ -79,7 +79,7 @@ class JWP_DH_Example_Process_Posts extends JWP\DH\Handler {
 }
 ```
 
-###Создание страницы обработчика в админке###
+### Создание страницы обработчика в админке
 ```php
 add_action( 'admin_menu', function() {
 	$page = add_menu_page(
@@ -99,13 +99,13 @@ function jwp_dh_render_test() {
 }
 ```
 
-###Примеры пользовательских обработчиков###
+### Примеры пользовательских обработчиков
 
-* [Создание N записей](#)
-* [Удаление записей по произвольному полю](#)
-* [Обработка строк в таблице базы данных](#)
-* [Обработка записей](#)
-* [Обработка изменяемого кол-ва записей](#)
-* [Рекурсивная обработка рубрик](#)
-* [Рекурсивная обработка с передачей управления в другой обработчик](#)
+* [Создание N записей](https://github.com/eugene-jokerov/jwp-dh-core/blob/master/examples/class-create-posts.php)
+* [Удаление записей по произвольному полю](https://github.com/eugene-jokerov/jwp-dh-core/blob/master/examples/class-delete-posts.php)
+* [Обработка строк в таблице базы данных](https://github.com/eugene-jokerov/jwp-dh-core/blob/master/examples/class-process-dbtable.php)
+* [Обработка записей](https://github.com/eugene-jokerov/jwp-dh-core/blob/master/examples/class-process-posts.php)
+* [Обработка изменяемого кол-ва записей](https://github.com/eugene-jokerov/jwp-dh-core/blob/master/examples/class-process-posts-meta.php)
+* [Рекурсивная обработка рубрик](https://github.com/eugene-jokerov/jwp-dh-core/blob/master/examples/class-recursive-rubrics.php)
+* [Рекурсивная обработка с передачей управления в другой обработчик](https://github.com/eugene-jokerov/jwp-dh-core/blob/master/examples/class-multi.php)
 
