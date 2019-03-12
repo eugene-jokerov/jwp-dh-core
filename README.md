@@ -48,16 +48,16 @@ include_once '/path/to/jwp-dh.php';
 class JWP_DH_Example_Process_Posts extends JWP\DH\Handler {
 	
 	public $title = 'Обработка записей';
-	
+
 	public $max_process_elements = 10;
-	
+
 	public function process( $request, $response ) {
 		$posts = get_posts( array(
-            'post_type'   => 'post',
-            'numberposts' => $this->max_process_elements,
-            'offset'      => $request->get( 'offset' ),
-        ) );
-        if ( $posts ) {
+			'post_type'   => 'post',
+			'numberposts' => $this->max_process_elements,
+			'offset'      => $request->get( 'offset' ),
+		) );
+		if ( $posts ) {
 			$post_ids = array();
 			foreach ( $posts as $post ) {
 				$post_ids[] = $post->ID;
@@ -67,7 +67,7 @@ class JWP_DH_Example_Process_Posts extends JWP\DH\Handler {
 		}
 		return $response;
 	}
-	
+
 	public function total( $request ) {
 		$posts_args = array( 
 			'post_type'      => 'post',

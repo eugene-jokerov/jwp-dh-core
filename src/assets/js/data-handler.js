@@ -13,16 +13,12 @@
 		dh_levels.requests++;
 		$(document).trigger('jwpdh.request', { 'self' : button });
 		$.post(ajaxurl, data, function(response) {
-			$(document).trigger('jwpdh.responce', { 'responce' : response, 'self' : button, 'is_first': data.first_request });
-			if ( data.first_request ) {
-				// первый запрос бывает только один раз
-				data.first_request = false;
-			}
 			if ( button.data( 'dhstate' ) == 'stopping' ) {
 				// если текущее состояние "останавливается", то переводим в "остановлен"
 				button.data( 'dhstate', 'stopped' );
 			}
 			var old_level = dh_levels.current;
+			var slug_changed = false;
 			dh_levels[ old_level ] = {
 				total: response.total,
 				offset: response.offset,
@@ -36,6 +32,7 @@
 				// если поменяли handler
 				if ( response.slug != data.slug ) {
 					// при смене handler идёт двойное повышение уровня
+					slug_changed = true;
 					var levelup2 = old_level + 1;
 					dh_levels[ levelup2 ] = {
 						total: 0,
@@ -60,6 +57,18 @@
 			
 			button.data( 'dh-total', data.total );
 			button.data( 'dh-offset', data.offset );
+
+			$(document).trigger('jwpdh.responce', {
+				 'responce' : response, 
+				 'self' : button,
+				 'slug' : data.slug,
+				 'is_first': data.first_request,
+				 'slug_changed' : slug_changed,
+			});
+			if ( data.first_request ) {
+				// первый запрос бывает только один раз
+				data.first_request = false;
+			}
 			
 			if(data.offset < data.total) {
 				dh_ajax_request(data, button);

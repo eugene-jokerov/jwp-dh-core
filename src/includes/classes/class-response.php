@@ -95,6 +95,7 @@
 		 */
 		public function force_end() {
 			$this->total = $this->offset;
+			$this->level = 1;
 		}
 		
 		/**

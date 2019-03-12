@@ -16,7 +16,7 @@
 		 *
 		 * @var string
 		 */
-		private $version = '1.2.4';
+		private $version = '1.2.5';
 		
 		/**
 		 * Единственный экземпляр класса
