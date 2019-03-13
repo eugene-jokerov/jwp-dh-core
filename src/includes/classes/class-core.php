@@ -250,10 +250,10 @@
 				$total = $handler->total( $request );
 			}
 			$total = intval( $total );
+			$response->set( 'total', $total );
 			
 			if ( $total_only ) {
 				// если нужно получить только общее кол-во
-				$response->set( 'total', $total );
 				$response->set( 'offset', 0 );
 				return $response;
 			}
