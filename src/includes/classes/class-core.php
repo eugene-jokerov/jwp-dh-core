@@ -16,7 +16,7 @@
 		 *
 		 * @var string
 		 */
-		private $version = '1.2.5';
+		private $version = '1.2.6';
 		
 		/**
 		 * Единственный экземпляр класса
@@ -222,7 +222,7 @@
 				wp_die( $handler->get_error_message() ); // запрашиваемый обработчик не найден
 			}
 			
-			$response = $this->process_user_handler( $handler, $request, $response );
+			$this->process_user_handler( $handler, $request, $response );
 
 			// возвращаем данные в json формате
 			wp_send_json( $response->prepare_to_send() );
@@ -257,17 +257,18 @@
 				$response->set( 'offset', 0 );
 				return $response;
 			}
-			
-			$response = $handler->process( $request, $response ); // передаём управление в пользовательский обработчик
-			
+
 			$max_process_elements = $handler->get_max_process_elements( $total, $offset );
 			$offset = $offset + $max_process_elements;
 			if ( $offset >= $total ) {
 				// это последний запрос
+				$request->set( 'last_request', true );
 				$response->set( 'offset', $total );
 			} else {
 				$response->set( 'offset', $offset );
 			}
+
+			$handler->process( $request, $response ); // передаём управление в пользовательский обработчик
 			
 			$response->set( 'total', $total );
 			return $response;

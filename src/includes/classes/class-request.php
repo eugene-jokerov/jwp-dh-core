@@ -57,6 +57,13 @@
 		 * @var bool
 		 */
 		protected $first_request = false;
+
+		/**
+		 * Последний запрос
+		 *
+		 * @var bool
+		 */
+		protected $last_request = false;
 		
 		/**
 		 * Инициализация
@@ -88,6 +95,19 @@
 			}
 			return false;
 		}
+
+		/**
+		 * Устанавливает значение параметра
+		 *
+		 * @param string $property_name
+		 * @param mixed $value
+		 * @return void
+		 */
+		public function set( $property_name, $value ) {
+			if ( isset( $this->$property_name ) ) {
+				$this->$property_name = $value;
+			}
+		}
 		
 		/**
 		 * Только посчитать общее кол-во элементов?
@@ -105,6 +125,15 @@
 		 */
 		public function is_first_request() {
 			return $this->first_request;
+		}
+
+		/**
+		 * Последняя ли это итерация?
+		 *
+		 * @return bool
+		 */
+		public function is_last_request() {
+			return $this->last_request;
 		}
 		
 		/**
