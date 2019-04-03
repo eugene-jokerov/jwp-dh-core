@@ -67,7 +67,7 @@
 			});
 			if ( data.first_request ) {
 				// первый запрос бывает только один раз
-				data.first_request = false;
+				data.first_request = 0;
 			}
 			
 			if(data.offset < data.total) {
